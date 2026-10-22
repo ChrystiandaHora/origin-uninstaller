@@ -116,6 +116,7 @@ class ConfirmRemovalDialog(Adw.Window):
         group_pkg.set_description("Será removido e purgado do sistema operacional:")
 
         row_pkg = Adw.ActionRow()
+        row_pkg.set_use_markup(False)
         row_pkg.set_title(self.app.name)
 
         if self.app.app_type == AppType.APT:
@@ -151,6 +152,7 @@ class ConfirmRemovalDialog(Adw.Window):
             self.checkboxes: List[Gtk.CheckButton] = []
             for r in self.residuals:
                 row_r = Adw.ActionRow()
+                row_r.set_use_markup(False)
                 row_r.set_title(r.category)
                 row_r.set_subtitle(r.path)
                 row_r.set_subtitle_lines(2)

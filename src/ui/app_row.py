@@ -22,6 +22,7 @@ class AppRow(Adw.ActionRow):
         self.app = app
         self.on_uninstall_clicked = on_uninstall_clicked
 
+        self.set_use_markup(False)
         self.set_title(app.name)
         self.set_title_lines(1)
 
@@ -69,8 +70,12 @@ class AppRow(Adw.ActionRow):
             suffix_box.append(btn_lock)
         else:
             btn_uninstall = Gtk.Button()
-            btn_uninstall.set_icon_name("user-trash-symbolic")
-            btn_uninstall.set_label("Desinstalar")
+            btn_uninstall.set_child(
+                Adw.ButtonContent(
+                    icon_name="user-trash-symbolic",
+                    label="Desinstalar",
+                )
+            )
             btn_uninstall.set_tooltip_text(f"Desinstalar e limpar todos os dados de {app.name}")
             btn_uninstall.add_css_class("destructive-action")
             btn_uninstall.connect("clicked", self._on_btn_clicked)

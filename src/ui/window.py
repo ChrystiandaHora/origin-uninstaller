@@ -126,11 +126,17 @@ class UninstallerWindow(Adw.ApplicationWindow):
     def _load_css(self) -> None:
         provider = Gtk.CssProvider()
         provider.load_from_string(APP_CSS)
-        Gtk.StyleContext.add_provider_for_display(
-            Gdk.Display.get_default(),
-            provider,
-            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
-        )
+        display = Gdk.Display.get_default()
+        if display:
+            Gtk.StyleContext.add_provider_for_display(
+                display,
+                provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+            )
+            if os.path.isdir(ASSETS_DIR):
+                theme = Gtk.IconTheme.get_for_display(display)
+                theme.add_search_path(ASSETS_DIR)
+                self.set_icon_name("origin-uninstaller")
 
     def _build_ui(self) -> None:
         # Layout principal com ToolbarView
@@ -141,9 +147,25 @@ class UninstallerWindow(Adw.ApplicationWindow):
         header = Adw.HeaderBar()
         self.toolbar_view.add_top_bar(header)
 
+        # Logo + Identificação à esquerda
+        brand_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        brand_box.set_valign(Gtk.Align.CENTER)
+        if os.path.exists(APP_ICON_SVG):
+            logo_img = Gtk.Image.new_from_file(APP_ICON_SVG)
+            logo_img.set_pixel_size(26)
+            brand_box.append(logo_img)
+        brand_lbl = Gtk.Label(label="Origin Uninstaller")
+        brand_lbl.add_css_class("heading")
+        brand_box.append(brand_lbl)
+        header.pack_start(brand_box)
+
         # Botão Recarregar / Varredura
         btn_refresh = Gtk.Button()
-        btn_refresh.set_icon_name("view-refresh-symbolic")
+        btn_refresh_content = Adw.ButtonContent(
+            icon_name="view-refresh-symbolic",
+            label="Recarregar",
+        )
+        btn_refresh.set_child(btn_refresh_content)
         btn_refresh.set_tooltip_text("Recarregar e varrer aplicativos instalados")
         btn_refresh.connect("clicked", lambda _: self._start_scan())
         header.pack_start(btn_refresh)
@@ -190,13 +212,11 @@ class UninstallerWindow(Adw.ApplicationWindow):
         loading_page.set_description("Localizando aplicativos APT, Flatpak e pacotes instalados.")
         spinner = Gtk.Spinner()
         spinner.set_spinning(True)
-        spinner.set_pixel_size(36)
+        spinner.set_size_request(36, 36)
         spinner.set_halign(Gtk.Align.CENTER)
         spinner.set_margin_top(12)
-        loading_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        loading_box.append(loading_page)
-        loading_box.append(spinner)
-        self.list_stack.add_named(loading_box, "loading")
+        loading_page.set_child(spinner)
+        self.list_stack.add_named(loading_page, "loading")
 
         # Estado 2: Lista Scrolled com ListBox
         scrolled = Gtk.ScrolledWindow()

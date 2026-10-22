@@ -33,7 +33,7 @@ class LogView(Gtk.Box):
 
         self.spinner = Gtk.Spinner()
         self.spinner.set_spinning(True)
-        self.spinner.set_pixel_size(24)
+        self.spinner.set_size_request(24, 24)
         self.spinner.set_margin_start(16)
         self.header_box.append(self.spinner)
 
@@ -87,8 +87,13 @@ class LogView(Gtk.Box):
         self.bottom_box.set_halign(Gtk.Align.END)
         self.bottom_box.set_margin_top(4)
 
-        self.btn_back = Gtk.Button(label="Voltar para a Lista de Aplicativos")
-        self.btn_back.set_icon_name("go-previous-symbolic")
+        self.btn_back = Gtk.Button()
+        self.btn_back.set_child(
+            Adw.ButtonContent(
+                icon_name="go-previous-symbolic",
+                label="Voltar para a Lista de Aplicativos",
+            )
+        )
         self.btn_back.add_css_class("suggested-action")
         self.btn_back.set_sensitive(False)
         self.btn_back.connect("clicked", lambda _: self.on_back_clicked())
