@@ -34,7 +34,7 @@ Comment=Desinstale aplicativos e limpe completamente suas configurações, cache
 Exec=/usr/bin/python3 $APP_DIR/main.py
 Icon=$APP_DIR/assets/origin-uninstaller.svg
 Terminal=false
-Categories=System;PackageManager;GTK;
+Categories=System;Utility;PackageManager;GTK;
 StartupNotify=true
 StartupWMClass=br.com.chrystian.OriginUninstaller
 EOF
