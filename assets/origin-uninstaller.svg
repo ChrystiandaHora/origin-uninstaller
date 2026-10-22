@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Sombra base estilo GNOME Libadwaita -->
+    <linearGradient id="bgShadow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="10%" stop-color="#1e1e2e"/>
+      <stop offset="90%" stop-color="#1e1e2e"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Gradiente principal do card (Carmim / Rubi / Violeta Profundo) -->
+    <linearGradient id="bgMain" x1="15%" y1="5%" x2="85%" y2="95%">
+      <stop offset="0%" stop-color="#e11d48"/>
+      <stop offset="50%" stop-color="#9333ea"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+
+    <!-- Brilho superior interno -->
+    <linearGradient id="innerGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"/>
+    </linearGradient>
+
+    <!-- Gradiente do Badge de Desinstalação e Limpeza Profunda -->
+    <linearGradient id="trashBadge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <!-- Face iluminada do cubo de pacote (desmontando / limpando) -->
+    <linearGradient id="cubeTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fce7f3"/>
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbcfe8"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base 3D inferior do Squircle -->
+  <rect x="12" y="16" width="104" height="100" rx="24" fill="url(#bgShadow)"/>
+
+  <!-- Corpo Principal do Squircle -->
+  <rect x="12" y="12" width="104" height="100" rx="24" fill="url(#bgMain)"/>
+  <rect x="13" y="13" width="102" height="98" rx="23" fill="none" stroke="url(#innerGlow)" stroke-width="2"/>
+
+  <!-- Anel de Varredura e Limpeza Total de Arquivos -->
+  <circle cx="64" cy="62" r="37" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="4" stroke-dasharray="14 8"/>
+  <path d="M 32 45 A 37 37 0 0 1 95 43" fill="none" stroke="#fb7185" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="95" cy="43" r="4" fill="#fb7185"/>
+
+  <!-- Cubo Isométrico (Pacote / Aplicativo Selecionado) -->
+  <!-- Face Superior -->
+  <polygon points="64,36 90,50 64,64 38,50" fill="url(#cubeTop)"/>
+  <!-- Face Esquerda -->
+  <polygon points="38,50 64,64 64,93 38,79" fill="url(#cubeLeft)"/>
+  <!-- Face Direita -->
+  <polygon points="64,64 90,50 90,79 64,93" fill="url(#cubeRight)"/>
+
+  <!-- Linha de partição / abertura do pacote -->
+  <line x1="64" y1="36" x2="64" y2="64" stroke="#e11d48" stroke-width="2" stroke-opacity="0.6"/>
+
+  <!-- Badge de Remoção Completa & Lixeira -->
+  <circle cx="88" cy="84" r="20" fill="#0f172a" fill-opacity="0.38"/>
+  <circle cx="88" cy="82" r="19" fill="url(#trashBadge)" stroke="#ffffff" stroke-width="2.5"/>
+
+  <!-- Ícone da Lixeira / Desinstalação -->
+  <!-- Tampa da lixeira -->
+  <rect x="80" y="74" width="16" height="2.5" rx="1" fill="#ffffff"/>
+  <rect x="85" y="72" width="6" height="2" rx="0.8" fill="#ffffff"/>
+  <!-- Corpo da lixeira -->
+  <path d="M 81.5 78 L 83 91 C 83.2 92.2 84 93 85.2 93 L 90.8 93 C 92 93 92.8 92.2 93 91 L 94.5 78 Z" fill="#ffffff"/>
+  <!-- Listras da lixeira -->
+  <line x1="86" y1="81" x2="86" y2="89" stroke="#dc2626" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="88" y1="81" x2="88" y2="89" stroke="#dc2626" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="90" y1="81" x2="90" y2="89" stroke="#dc2626" stroke-width="1.2" stroke-linecap="round"/>
+</svg>
