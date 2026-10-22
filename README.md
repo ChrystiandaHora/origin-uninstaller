@@ -77,6 +77,7 @@ origin-uninstaller
 origin-uninstaller/
 ├── main.py                     # Ponto de entrada Desktop (GTK4 / Libadwaita)
 ├── install.sh                  # Script de instalação com atalho .desktop e ícone
+├── LICENSE                     # Licença de código aberto (MIT)
 ├── assets/                     # Identidade visual (SVG e PNG em alta resolução)
 │   ├── origin-uninstaller.svg
 │   └── origin-uninstaller.png
